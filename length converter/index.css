@@ -1,0 +1,21 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-image:url( "plain.jpg");
+  text-align: center;
+}
+b{
+    color:#ffee58;
+}
+div{
+    display: flex;
+    justify-content: center;
+    
+}
+h2{
+    border: 2px solid;
+    border-style: double;
+    border-radius: 5px;
+    width: 20%;
+
+}
