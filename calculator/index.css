@@ -1,0 +1,28 @@
+.calculator {
+  width: 20%;
+  box-shadow: 0px 0px 10px#b3b3b3;
+  border-radius: 10px;
+}
+
+#display {
+  font-size: 24px;
+  border: solid #e4e1e1;
+}
+button {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border-color: #c2bebe;
+  border: none;
+  
+}
+input {
+  border-color:none;
+  display: grid;
+  margin: 20px;
+  width: 50%;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
