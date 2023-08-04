@@ -1,15 +1,14 @@
-
-let a = document.getElementById("display");
+let a = document.getElementById("output");
 
 function display(num) {
-    a.value += num;
+  a.value += num;
 }
 function calculate() {
-        a.value = eval(a.value)
-    }
+  a.value = eval(a.value);
+}
 function clearAll() {
-    a.value = "";
+  a.value = " ";
 }
 function del() {
-    a.value = a.value.slice(0,-1);
+  a.value = a.value.slice(0, -1);
 }
