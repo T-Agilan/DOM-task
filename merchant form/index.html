@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <form
+      action="/action_page.php"
+      onsubmit="return validateForm()"
+      method="post"
+    >
+      <fieldset>
+        <h2 style="text-align: center">Merchant form</h2>
+        <table>
+          <tr>
+            <td>
+              <label for="fname"><b>Name:</b></label>
+            </td>
+            <td><input type="text" id="fname" name="fname" autofocus /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="mobile"><b>Email:</b></label>
+            </td>
+            <td><input type="email" id="mail" name="mail" /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="tel"><b>Mobile Number:</b></label>
+            </td>
+            <td><input type="tel" id="number" name="number" /><br /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="website"><b>website:</b></label>
+            </td>
+            <td>
+              <input type="url" id="website" name="website" /><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="contact"><b>Contact name:</b></label>
+            </td>
+            <td><input type="text" id="name" name="name" /><br /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="number"> <b>Contact Number:</b></label>
+            </td>
+            <td>
+              <input
+                type="tel"
+                id="contact"
+                name="contact"
+                minlength="0"
+                maxlength="10"
+              /><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="e-mail"><b>Contact email:</b></label>
+            </td>
+            <td><input type="email" id="mail" name="mail" /><br /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="notes"><b>Notes:</b></label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="notes"
+                name="notes"
+                placeholder="Comment your thoughts..!"
+              /><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="text"><b>Type:</b></label
+              ><br />
+            </td>
+            <td>
+              <input type="radio" id="value" name="value" />
+              <label for="text">Small Business</label><br />
+              <input type="radio" id="role" name="role" />
+              <label for="text">Enterprise</label><br />
+              <input type="radio" id="role" name="role" />
+              <label for="text">Entrepreneur</label><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="text"><b>category:</b></label
+              ><br />
+            </td>
+            <td>
+              <select id="category" multiple>
+                <br />
+                <option value="Clothes">Clothes</option>
+                <option value="Toys">Toys</option>
+                <option value="Groceries">Groceries</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Digital">Digital</option></select
+              ><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="percentage"><b>Commission percentage:</b></label>
+            </td>
+            <td>
+              <input
+                type="number"
+                id="percentage"
+                name="percentage"
+              /><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="duration"><b>Active from:</b></label>
+            </td>
+            <td>
+              <input type="date" id="duration" name="duration" /><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="image"><b>Logo:</b></label>
+            </td>
+            <td><input type="file" id="image" name="image" /><br /></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="payment"><b>payment options:</b></label
+              ><br />
+            </td>
+            <td>
+              <input type="checkbox" id="amount" name="cash" />
+              <label for="cash">Cash on delivery</label>
+              <br />
+              <input type="checkbox" id="amount" name="cash" />
+              <label for="transaction">UPI</label><br />
+              <input type="checkbox" id="amount" name="cash" />
+              <label for="transaction">Card payment</label><br />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" id="submit" name="submit">submit</button>
+              <button type="button" id="reset" name="reset">reset</button>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+  </body>
+  <script src="index.js"></script>
+</html>
