@@ -4,11 +4,7 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <form
-      action="/action_page.php"
-      onsubmit="return validateForm()"
-      method="post"
-    >
+    <form id="MerchantForm">
       <fieldset>
         <h2 style="text-align: center">Merchant form</h2>
         <table>
@@ -34,9 +30,7 @@
             <td>
               <label for="website"><b>website:</b></label>
             </td>
-            <td>
-              <input type="url" id="website" name="website" /><br />
-            </td>
+            <td><input type="url" id="website" name="website" /><br /></td>
           </tr>
           <tr>
             <td>
@@ -79,11 +73,11 @@
           </tr>
           <tr>
             <td>
-              <label for="text"><b>Type:</b></label
+              <label for="text" name="type"><b>Type:</b></label
               ><br />
             </td>
             <td>
-              <input type="radio" id="value" name="value" />
+              <input type="radio" id="value" name="Type" />
               <label for="text">Small Business</label><br />
               <input type="radio" id="role" name="role" />
               <label for="text">Enterprise</label><br />
@@ -97,7 +91,7 @@
               ><br />
             </td>
             <td>
-              <select id="category" multiple>
+              <select id="category" name="category">
                 <br />
                 <option value="Clothes">Clothes</option>
                 <option value="Toys">Toys</option>
@@ -112,51 +106,51 @@
               <label for="percentage"><b>Commission percentage:</b></label>
             </td>
             <td>
-              <input
-                type="number"
-                id="percentage"
-                name="percentage"
-              /><br />
+              <input type="number" id="percentage" name="percentage" /><br />
             </td>
           </tr>
           <tr>
             <td>
-              <label for="duration"><b>Active from:</b></label>
+              <label for="ActiveFrom" name="ActiveFrom"
+                ><b>Active from:</b></label
+              >
             </td>
-            <td>
-              <input type="date" id="duration" name="duration" /><br />
-            </td>
+            <td><input type="date" id="duration" name="ActiveFrom" /><br /></td>
           </tr>
           <tr>
             <td>
-              <label for="image"><b>Logo:</b></label>
+              <label for="image" name="Logo"><b>Logo:</b></label>
             </td>
-            <td><input type="file" id="image" name="image" /><br /></td>
+            <td><input type="file" id="image" name="Logo" /><br /></td>
           </tr>
           <tr>
             <td>
-              <label for="payment"><b>payment options:</b></label
+              <label for="payment" name="payment-options"
+                ><b>payment options:</b></label
               ><br />
             </td>
             <td>
-              <input type="checkbox" id="amount" name="cash" />
+              <input type="checkbox" id="amount" name="payment" />
               <label for="cash">Cash on delivery</label>
               <br />
-              <input type="checkbox" id="amount" name="cash" />
+              <input type="checkbox" id="amount" name="payment" />
               <label for="transaction">UPI</label><br />
-              <input type="checkbox" id="amount" name="cash" />
+              <input type="checkbox" id="amount" name="payment" />
               <label for="transaction">Card payment</label><br />
             </td>
           </tr>
           <tr>
             <td>
-              <button type="button" id="submit" name="submit">submit</button>
-              <button type="button" id="reset" name="reset">reset</button>
+              <button>submit</button>
+              <button type="button" id="reset" name="reset" onsubmit="submit()">
+                reset
+              </button>
             </td>
           </tr>
         </table>
       </fieldset>
     </form>
+
+    <script src="index.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>
