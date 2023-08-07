@@ -1,4 +1,17 @@
 body{
-    background-color: rgba(230, 145, 49, 0.767);
+
     border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+}
+fieldset{
+    background-image: url(bg1.avif);
+    background-color: rgb(249, 251, 252);
+    background-size: cover;
+    
+}
+button{
+    border-radius: 25%;
+    border: none;
 }
