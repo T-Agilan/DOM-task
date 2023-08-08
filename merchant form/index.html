@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="index.css" />
+    <!-- <link rel="stylesheet" href="index.css" /> -->
   </head>
   <body>
-    <form id="MerchantForm">
+    <form id="MerchantForm" method="post">
       <fieldset>
         <h2 style="text-align: center">Merchant form</h2>
-        <table>
+       <table >
           <tr>
             <td>
               <label for="fname"><b>Name:</b></label>
@@ -141,16 +141,31 @@
           </tr>
           <tr>
             <td>
-              <button>submit</button>
-              <button type="button" id="reset" name="reset" onsubmit="submit()">
+              <button type="button" onclick="submit()">submit</button>
+              <button type="reset" id="reset" name="reset" >
                 reset
               </button>
             </td>
           </tr>
-        </table>
+          </table>
+        
       </fieldset>
     </form>
+    <table>
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Number</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Displayed form data will appear here -->
+      </tbody>
+  </table>
+  
 
-    <script src="index.js"></script>
+
   </body>
+  <script src="index.js"></script>                    
 </html>
