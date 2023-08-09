@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <link rel="stylesheet" href="index.css" /> -->
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <h2>Merchant form</h2>
     <form id="MerchantForm" method="post">
       <fieldset>
-        <h2 style="text-align: center">Merchant form</h2>
+       
        <table >
           <tr>
             <td>
@@ -36,7 +38,7 @@
             <td>
               <label for="contact"><b>Contact name:</b></label>
             </td>
-            <td><input type="text" id="name" name="name" /><br /></td>
+            <td><input type="text" id="contact-Name" name="name" /><br /></td>
           </tr>
           <tr>
             <td>
@@ -45,7 +47,7 @@
             <td>
               <input
                 type="tel"
-                id="contact"
+                id="contact-number"
                 name="contact"
                 minlength="0"
                 maxlength="10"
@@ -56,7 +58,7 @@
             <td>
               <label for="e-mail"><b>Contact email:</b></label>
             </td>
-            <td><input type="email" id="mail" name="mail" /><br /></td>
+            <td><input type="email" id="Contact-email" name="mail" /><br /></td>
           </tr>
           <tr>
             <td>
@@ -77,11 +79,11 @@
               ><br />
             </td>
             <td>
-              <input type="radio" id="value" name="Type" />
+              <input type="radio" id="type-variety" name="Type"  value="SmallBusiness"/>
               <label for="text">Small Business</label><br />
-              <input type="radio" id="role" name="role" />
+              <input type="radio" id="role" name="role" value="Enterprise"/>
               <label for="text">Enterprise</label><br />
-              <input type="radio" id="role" name="role" />
+              <input type="radio" id="role" name="role"  value="Entrepreneur"/>
               <label for="text">Entrepreneur</label><br />
             </td>
           </tr>
@@ -91,7 +93,7 @@
               ><br />
             </td>
             <td>
-              <select id="category" name="category">
+              <select id="category-variety" name="category">
                 <br />
                 <option value="Clothes">Clothes</option>
                 <option value="Toys">Toys</option>
@@ -130,18 +132,18 @@
               ><br />
             </td>
             <td>
-              <input type="checkbox" id="amount" name="payment" />
+              <input type="checkbox" id="amount" name="payment" value="Cash on  delivery" />
               <label for="cash">Cash on delivery</label>
               <br />
-              <input type="checkbox" id="amount" name="payment" />
+              <input type="checkbox" id="amount" name="payment" value=" UPI"/>
               <label for="transaction">UPI</label><br />
-              <input type="checkbox" id="amount" name="payment" />
+              <input type="checkbox" id="amount" name="payment"  value="Card payment"/>
               <label for="transaction">Card payment</label><br />
             </td>
           </tr>
           <tr>
             <td>
-              <button type="button" onclick="submit()">submit</button>
+              <button type="button" onclick="onSubmit()">submit</button>
               <button type="reset" id="reset" name="reset" >
                 reset
               </button>
@@ -151,21 +153,30 @@
         
       </fieldset>
     </form>
-    <table>
+    <table id="dataTable">
       <thead>
-          <tr>
+          <tr class="table-bottom">
               <th>Name</th>
               <th>Email</th>
               <th>Number</th>
+              <th>website</th>
+              <th>ContactName</th>
+              <th>ContactNumber</th>
+              <th>Contact-email</th>
+              <th>Notes</th>
+              <th>Type</th>
+              <th>category</th>
+              <th>percentage</th>
+              <th>ActiveFrom</th>
+              <th>Logo</th>
+              <th>payment</th>
           </tr>
       </thead>
-      <tbody>
-          <!-- Displayed form data will appear here -->
-      </tbody>
-  </table>
+      
+  </table><script src="index.js"></script>        
   
 
 
   </body>
-  <script src="index.js"></script>                    
+              
 </html>

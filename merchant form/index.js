@@ -1,52 +1,63 @@
-// document
-//   .getElementById("MerchantForm")
-//   .addEventListener("submit", function (event) {
-//     event.preventDefault();
-//     var name = document.getElementById("fname").value;
-//     var email = document.getElementById("mail").value;
-//     var number = document.getElementById("number").value;
+function onSubmit() {
+  var name = document.getElementById("fname").value;
+  var email = document.getElementById("mail").value;
+  var phone = document.getElementById("number").value;
+  var website = document.getElementById("website").value;
+  var contactName = document.getElementById("contact-Name").value;
+  var contactNumber = document.getElementById("contact-number").value;
+  var contactMail = document.getElementById("Contact-email").value;
+  var notes = document.getElementById("notes").value;
+  var type = document.getElementById("type-variety").value;
+  var category = document.getElementById("category-variety").value;
+  var percentage = document.getElementById("percentage").value;
+  var duration = document.getElementById("duration").value;
+  var logo = document.getElementById("image").value;
+  var payment = document.getElementById("amount").value;
 
-//     var newRow = document.createElement("tr");
-//     var nameCell = document.createElement("td");
-//     var emailCell = document.createElement("td");
-//     var numbercell = document.createElement("td");
-//     nameCell.textContent = name;
-//     emailCell.textContent = email;
-//     numbercell.textContent = number;
-//     newRow.appendChild(nameCell);
-//     newRow.appendChild(emailCell);
-//     newRow.appendChild(numbercell);
-//     document.querySelector("#displayTable tbody").appendChild(newRow);
-//     document.getElementById("name").value = " ";
-//     document.getElementById("mail").value = " ";
-//     document.getElementById("number").value = " ";
-//   });
+  var table = document.getElementById("dataTable");
+  var row = table.insertRow(table.rows.length);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  var cell5 = row.insertCell(4);
+  var cell6 = row.insertCell(5);
+  var cell7 = row.insertCell(6);
+  var cell8 = row.insertCell(7);
+  var cell9 = row.insertCell(8);
+  var cell10 = row.insertCell(9);
+  var cell11 = row.insertCell(10);
+  var cell12 = row.insertCell(11);
+  var cell13 = row.insertCell(12);
+  var cell14 = row.insertCell(13);
 
-//   const form = event.target;
-//   const formData = new FormData(form);
-//   for (let x of formData.entries()) {
-//     console.log(x[0] + ":" + x[1]);
-//   }
-// });
-function submit(e) {
-  e.preventDefault()
-  // var name = document.getElementById("fname").value;
-  // var mail = document.getElementById("mail").value;
-  // var phone = document.getElementById("number").value;
-  
+  cell1.innerHTML = name;
+  cell2.innerHTML = email;
+  cell3.innerHTML = phone;
+  cell4.innerHTML = website;
+  cell5.innerHTML = contactName;
+  cell6.innerHTML = contactNumber;
+  cell7.innerHTML = contactMail;
+  cell8.innerHTML = notes;
+  cell9.innerHTML = type;
+  cell10.innerHTML = category;
+  cell11.innerHTML = percentage;
+  cell12.innerHTML = duration;
+  cell13.innerHTML = logo;
+  cell14.innerHTML = payment;
 
-  // var table = document.getElementById("displayTable");
-  // var row = table.insertRow(table.rows.length);
-  // var cell1 = row.insertCell(0);
-  // var cell2 = row.insertCell(1);
-  // var cell3 = row.insertCell(2);
-
-  // cell1.innerHTML = name;
-  // cell2.innerHTML = mail;
-  // cell3.innerHTML = phone;
-
-  // document.getElementById("fname").value = "";
-  // document.getElementById("mail").value = "";
-  // document.getElementById("number").value = "";
-  
+//   document.getElementById("name").value = "";
+//   document.getElementById("email").value = "";
+//   document.getElementById("phone").value = "";
+//   document.getElementById("website").value = "";
+//   document.getElementById("contactName").value = "";
+//   document.getElementById("contactNUmber").value = "";
+//   document.getElementById("Contact-email").value = "";
+//   document.getElementById("notes").value = "";
+//   document.getElementById("value").value = "";
+//   document.getElementById("category").value = "";
+//   document.getElementById("percentage").value = "";
+//   document.getElementById("duration").value = "";
+//   document.getElementById("image").value = "";
+//   document.getElementById("amount").value = "";
 }

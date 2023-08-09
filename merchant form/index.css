@@ -1,28 +1,33 @@
-body{
-
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    background-size: cover;
+#dataTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
 }
-fieldset{
-    background-image: url(bg1.avif);
-    background-color: rgb(249, 251, 252);
-    background-size: cover;
-    
+.table-bottom{
+  border-collapse: collapse;
+  border: 1px solid black;
 }
-table{
-    display: flex;
-    border-collapse: collapse;
-    width: 100%;
+.table-bottom th{
+  border-collapse: collapse;
+}
+h2{
+  display: flex;
+  justify-content: center;
 }
 
-#displayTable {
-    border: 1px solid black;
-    
+fieldset {
+  background-color: rgb(222, 127, 235);
+  display: flex;
+  justify-content: center;
 }
+/* .input{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
 
-/* button{
-    border-radius: 25%;
-    border: none;
+} */
+/* .check-box{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
 } */
