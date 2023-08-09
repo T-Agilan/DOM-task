@@ -3,13 +3,17 @@
   width: 100%;
   border: 1px solid black;
 }
-.table-bottom{
+/* .table-bottom{
+  border-collapse: collapse;
+  border: 1px solid black;
+} */
+th,td  {
   border-collapse: collapse;
   border: 1px solid black;
 }
-.table-bottom th{
+/* .table-bottom th{
   border-collapse: collapse;
-}
+} */
 h2{
   display: flex;
   justify-content: center;

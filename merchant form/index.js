@@ -1,18 +1,19 @@
 function onSubmit() {
-  var name = document.getElementById("fname").value;
-  var email = document.getElementById("mail").value;
-  var phone = document.getElementById("number").value;
-  var website = document.getElementById("website").value;
-  var contactName = document.getElementById("contact-Name").value;
-  var contactNumber = document.getElementById("contact-number").value;
-  var contactMail = document.getElementById("Contact-email").value;
-  var notes = document.getElementById("notes").value;
-  var type = document.getElementById("type-variety").value;
-  var category = document.getElementById("category-variety").value;
-  var percentage = document.getElementById("percentage").value;
-  var duration = document.getElementById("duration").value;
-  var logo = document.getElementById("image").value;
-  var payment = document.getElementById("amount").value;
+  var response = {};
+  // let MyArray = [];
+  response.name = document.getElementById("fname").value;
+  response.email = document.getElementById("mail").value;
+  response.phone = document.getElementById("number").value;
+  response.website = document.getElementById("website").value;
+  response.contactName = document.getElementById("contact-Name").value;
+  response.contactNumber = document.getElementById("contact-number").value;
+  response.contactMail = document.getElementById("Contact-email").value;
+  response.notes = document.getElementById("notes").value;
+  response.type = role();
+  response.category = document.getElementById("category-variety").value;
+  response.percentage = document.getElementById("percentage").value;
+  response.duration = document.getElementById("duration").value;
+  response.payment = callPayment();
 
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
@@ -29,35 +30,46 @@ function onSubmit() {
   var cell11 = row.insertCell(10);
   var cell12 = row.insertCell(11);
   var cell13 = row.insertCell(12);
-  var cell14 = row.insertCell(13);
+  // var cell14 = row.insertCell(13);
 
-  cell1.innerHTML = name;
-  cell2.innerHTML = email;
-  cell3.innerHTML = phone;
-  cell4.innerHTML = website;
-  cell5.innerHTML = contactName;
-  cell6.innerHTML = contactNumber;
-  cell7.innerHTML = contactMail;
-  cell8.innerHTML = notes;
-  cell9.innerHTML = type;
-  cell10.innerHTML = category;
-  cell11.innerHTML = percentage;
-  cell12.innerHTML = duration;
-  cell13.innerHTML = logo;
-  cell14.innerHTML = payment;
-
-//   document.getElementById("name").value = "";
-//   document.getElementById("email").value = "";
-//   document.getElementById("phone").value = "";
-//   document.getElementById("website").value = "";
-//   document.getElementById("contactName").value = "";
-//   document.getElementById("contactNUmber").value = "";
-//   document.getElementById("Contact-email").value = "";
-//   document.getElementById("notes").value = "";
-//   document.getElementById("value").value = "";
-//   document.getElementById("category").value = "";
-//   document.getElementById("percentage").value = "";
-//   document.getElementById("duration").value = "";
-//   document.getElementById("image").value = "";
-//   document.getElementById("amount").value = "";
+  cell1.innerHTML = response.name;
+  cell2.innerHTML = response.email;
+  cell3.innerHTML = response.phone;
+  cell4.innerHTML = response.website;
+  cell5.innerHTML = response.contactName;
+  cell6.innerHTML = response.contactNumber;
+  cell7.innerHTML = response.contactMail;
+  cell8.innerHTML = response.notes;
+  cell9.innerHTML = response.type;
+  cell10.innerHTML = response.category;
+  cell11.innerHTML = response.percentage;
+  cell12.innerHTML = response.duration;
+  // cell13.innerHTML = logo;
+  cell13.innerHTML = response.payment;
+  console.log(response);
+  localStorage.setItem('entries', JSON.stringify(response))
 }
+// function arr(array,value){
+//   array.push(value)
+// }
+// arr(MyArray,response)
+// console.log(MyArray)
+function role() {
+  var radio = document.getElementsByName("role");
+  var selectedType = "";
+  for (i = 0; i < radio.length; i++) {
+    if (radio[i].checked) selectedType = radio[i].value;
+  }
+  return selectedType;
+}
+
+function callPayment() {
+  var transaction = document.getElementsByName("payment");
+  var selectedType = [];
+  for (i = 0; i < transaction.length; i++) {
+    if (transaction[i].checked) selectedType.push(transaction[i].value);
+  }
+  return selectedType;
+}
+
+
