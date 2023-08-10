@@ -1,6 +1,6 @@
 function onSubmit() {
   var response = {};
-  let MyArray = [];
+  // let MyArray = [];
   response.name = document.getElementById("fname").value;
   response.email = document.getElementById("mail").value;
   response.phone = document.getElementById("number").value;
@@ -15,6 +15,10 @@ function onSubmit() {
   response.duration = document.getElementById("duration").value;
   response.payment = callPayment();
   
+
+  // var Edit = editButton();
+  // var save = document.getElementById("Edt-button")
+
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
   var cell1 = row.insertCell(0);
@@ -47,10 +51,19 @@ function onSubmit() {
   cell12.innerHTML = response.duration;
   // cell13.innerHTML = logo;
   cell13.innerHTML = response.payment;
-  cell14.innerHTML = "<button>Edit</button> <button>Save</button>";
+  cell14.innerHTML =
+    "<button id='Edt-button'>Edit</button> <button id= 'save-button'>Save</button>";
   localStorage.setItem("entries", JSON.stringify(response));
 }
 
+// function editButton(){
+//   var Edit = document.getElementById("Edt-button");
+//   var buttonType = "";
+//   for(i = 0;i < Edit.length;i++){
+//     if(Edit[i].checked) buttonType = Edit[i].value;
+//   }
+//   return buttonType;
+// }
 function role() {
   var radio = document.getElementsByName("role");
   var selectedType = "";
