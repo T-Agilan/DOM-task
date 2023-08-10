@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,178 +6,193 @@
   <body>
     <h2>Merchant form</h2>
     <form id="MerchantForm" method="post">
-    
-       
-       <table class="table1">
-          <tr>
-            <td>
-              <label for="fname"><b>Name:</b></label>
-            </td>
-            <td><input type="text" id="fname" name="fname" autofocus /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="mobile"><b>Email:</b></label>
-            </td>
-            <td><input type="email" id="mail" name="mail" /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="tel"><b>Mobile Number:</b></label>
-            </td>
-            <td><input type="tel" id="number" name="number" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="website"><b>Website:</b></label>
-            </td>
-            <td><input type="url" id="website" name="website" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="contact"><b>Contact name:</b></label>
-            </td>
-            <td><input type="text" id="contact-Name" name="name" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="number"> <b>Contact Number:</b></label>
-            </td>
-            <td>
-              <input
-                type="tel"
-                id="contact-number"
-                name="contact"
-                minlength="0"
-                maxlength="10"
-              /><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="e-mail"><b>Contact email:</b></label>
-            </td>
-            <td><input type="email" id="Contact-email" name="mail" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="notes"><b>Notes:</b></label>
-            </td>
-            <td>
-              <input
-                type="text"
-                id="notes"
-                name="notes"
-                placeholder="Comment your thoughts..!"
-              /><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="text" name="type"><b>Type:</b></label
-              ><br />
-            </td>
-            <td>
-              <input type="radio" id="type-variety" name="role"  value="SmallBusiness"/>
-              <label for="text">Small Business</label><br />
-              <input type="radio" id="type-variety" name="role" value="Enterprise"/>
-              <label for="text">Enterprise</label><br />
-              <input type="radio" id="type-variety" name="role"  value="Entrepreneur"/>
-              <label for="text">Entrepreneur</label><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="text"><b>Category:</b></label
-              ><br />
-            </td>
-            <td>
-              <select id="category-variety" name="category">
-                <br />
-                <option value="Clothes">Clothes</option>
-                <option value="Toys">Toys</option>
-                <option value="Groceries">Groceries</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Digital">Digital</option></select
-              ><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="percentage"><b>Commission percentage:</b></label>
-            </td>
-            <td>
-              <input type="number" id="percentage" name="percentage" /><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="ActiveFrom" name="ActiveFrom"
-                ><b>Active from:</b></label
-              >
-            </td>
-            <td><input type="date" id="duration" name="ActiveFrom" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="image" name="Logo"><b>Logo:</b></label>
-            </td>
-            <td><input type="file" id="image" name="Logo" /><br /></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="payment" name="payment-options"
-                ><b>Payment options:</b></label
-              ><br />
-            </td>
-            <td>
-              <input type="checkbox" id="amount" name="payment" value="Cash on  delivery" />
-              <label for="cash">Cash on delivery</label>
+      <table class="table1">
+        <tr>
+          <td>
+            <label for="fname"><b>Name:</b></label>
+          </td>
+          <td><input type="text" id="fname" name="fname" autofocus /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="mobile"><b>Email:</b></label>
+          </td>
+          <td><input type="email" id="mail" name="mail" /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="tel"><b>Mobile Number:</b></label>
+          </td>
+          <td><input type="tel" id="number" name="number" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="website"><b>Website:</b></label>
+          </td>
+          <td><input type="url" id="website" name="website" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="contact"><b>Contact name:</b></label>
+          </td>
+          <td><input type="text" id="contact-Name" name="name" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="number"> <b>Contact Number:</b></label>
+          </td>
+          <td>
+            <input
+              type="tel"
+              id="contact-number"
+              name="contact"
+              minlength="0"
+              maxlength="10"
+            /><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="e-mail"><b>Contact email:</b></label>
+          </td>
+          <td><input type="email" id="Contact-email" name="mail" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="notes"><b>Notes:</b></label>
+          </td>
+          <td>
+            <input
+              type="text"
+              id="notes"
+              name="notes"
+              placeholder="Comment your thoughts..!"
+            /><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="text" name="type"><b>Type:</b></label
+            ><br />
+          </td>
+          <td>
+            <input
+              type="radio"
+              id="type-variety"
+              name="role"
+              value="SmallBusiness"
+            />
+            <label for="text">Small Business</label><br />
+            <input
+              type="radio"
+              id="type-variety"
+              name="role"
+              value="Enterprise"
+            />
+            <label for="text">Enterprise</label><br />
+            <input
+              type="radio"
+              id="type-variety"
+              name="role"
+              value="Entrepreneur"
+            />
+            <label for="text">Entrepreneur</label><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="text"><b>Category:</b></label
+            ><br />
+          </td>
+          <td>
+            <select id="category-variety" name="category">
               <br />
-              <input type="checkbox" id="amount" name="payment" value=" UPI"/>
-              <label for="transaction">UPI</label><br />
-              <input type="checkbox" id="amount" name="payment"  value="Card payment"/>
-              <label for="transaction">Card payment</label><br />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button type="button" onclick="onSubmit()">submit</button>
-              <button type="reset" id="reset" name="reset" >
-                reset
-              </button>          
-                
-            </td>
-          </tr>
-          </table>
-        
+              <option value="Clothes">Clothes</option>
+              <option value="Toys">Toys</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Digital">Digital</option></select
+            ><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="percentage"><b>Commission percentage:</b></label>
+          </td>
+          <td>
+            <input type="number" id="percentage" name="percentage" /><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="ActiveFrom" name="ActiveFrom"
+              ><b>Active from:</b></label
+            >
+          </td>
+          <td><input type="date" id="duration" name="ActiveFrom" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="image" name="Logo"><b>Logo:</b></label>
+          </td>
+          <td><input type="file" id="image" name="Logo" /><br /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="payment" name="payment-options"
+              ><b>Payment options:</b></label
+            ><br />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="amount"
+              name="payment"
+              value="Cash on  delivery"
+            />
+            <label for="cash">Cash on delivery</label>
+            <br />
+            <input type="checkbox" id="amount" name="payment" value=" UPI" />
+            <label for="transaction">UPI</label><br />
+            <input
+              type="checkbox"
+              id="amount"
+              name="payment"
+              value="Card payment"
+            />
+            <label for="transaction">Card payment</label><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" onclick="onSubmit()">submit</button>
+            <button type="reset" id="reset" name="reset">reset</button>
+          </td>
+        </tr>
+      </table>
     </form>
+    <br /><br />
     <table id="dataTable">
       <thead>
-          <tr class="table-bottom">
-              <th>Name</th>
-              <th>Email</th>
-              <th>Number</th>
-              <th>website</th>
-              <th>ContactName</th>
-              <th>ContactNumber</th>
-              <th>Contact-email</th>
-              <th>Notes</th>
-              <th>Type</th>
-              <th>category</th>
-              <th>percentage</th>
-              <th>ActiveFrom</th>
-              <!-- <th>Logo</th> -->
-              <th>payment</th>
-              <th>Action</th>
-
-          </tr>
+        <tr class="table-bottom">
+          <th>Name</th>
+          <th>Email</th>
+          <th>Number</th>
+          <th>Website</th>
+          <th>ContactName</th>
+          <th>ContactNumber</th>
+          <th>Contact-email</th>
+          <th>Notes</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Percentage</th>
+          <th>ActiveFrom</th>
+          <!-- <th>Logo</th> -->
+          <th>Payment</th>
+          <th>Action</th>
+        </tr>
       </thead>
-      
-  </table><script src="index.js"></script>        
-  
-
-
+    </table>
+    <script src="index.js"></script>
   </body>
-              
 </html>
