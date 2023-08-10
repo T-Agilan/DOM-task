@@ -1,6 +1,6 @@
 function onSubmit() {
   var response = {};
-  // let MyArray = [];
+  let MyArray = [];
   response.name = document.getElementById("fname").value;
   response.email = document.getElementById("mail").value;
   response.phone = document.getElementById("number").value;
@@ -14,7 +14,7 @@ function onSubmit() {
   response.percentage = document.getElementById("percentage").value;
   response.duration = document.getElementById("duration").value;
   response.payment = callPayment();
-
+  
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
   var cell1 = row.insertCell(0);
@@ -30,6 +30,7 @@ function onSubmit() {
   var cell11 = row.insertCell(10);
   var cell12 = row.insertCell(11);
   var cell13 = row.insertCell(12);
+  var cell14 = row.insertCell(13);
   // var cell14 = row.insertCell(13);
 
   cell1.innerHTML = response.name;
@@ -46,14 +47,10 @@ function onSubmit() {
   cell12.innerHTML = response.duration;
   // cell13.innerHTML = logo;
   cell13.innerHTML = response.payment;
-  console.log(response);
-  localStorage.setItem('entries', JSON.stringify(response))
+  cell14.innerHTML = "<button>Edit</button> <button>Save</button>";
+  localStorage.setItem("entries", JSON.stringify(response));
 }
-// function arr(array,value){
-//   array.push(value)
-// }
-// arr(MyArray,response)
-// console.log(MyArray)
+
 function role() {
   var radio = document.getElementsByName("role");
   var selectedType = "";
@@ -71,5 +68,3 @@ function callPayment() {
   }
   return selectedType;
 }
-
-
