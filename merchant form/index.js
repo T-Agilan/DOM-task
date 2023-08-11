@@ -49,9 +49,15 @@ function onSubmit() {
   // cell13.innerHTML = logo;
   cell13.innerHTML = response.critical
   cell14.innerHTML = response.payment;
-  cell15.innerHTML =
-    "<button id='Edt-button'>Edit</button> <button id= 'save-button'>Save</button>";
+  // cell15.innerHTML =
+  //  "<button id='Edt-button'onClick=createEditHandler()>Edit</button> <button id= 'del-button'>Delete</button>";
+  var editButton = document.createElement("button");
+  editButton.innerHTML = "Edit";
+  editButton.addEventListener("click", function() {
+    editRow(response);
+  });
   localStorage.setItem("entries", JSON.stringify(response));
+
   reset();
   
 }
@@ -125,5 +131,57 @@ function resetPaymentMethod(){
   var payment = document.getElementsByName("payment");
   for (var i = 0; i < payment.length; i++) {
     payment[i].checked = false;
+  }
+}
+// <-------------------------------------Edit-functions------------------------>
+
+function createEditHandler(data) {
+  return function () {
+    populateForm(data);
+  }
+}
+function populateForm(data) {
+  document.getElementById("submit").innerText = "Update";
+  document.getElementById("fname").value = data.Name;
+  document.getElementById("mail").value = data.Email;
+  document.getElementById("number").value = data.Phone;
+  document.getElementById("website").value = data.Website;
+  document.getElementById("contact-Name").value = data.ContactName;
+  document.getElementById("contact-number").value = data.ContactPhone;
+  document.getElementById("Contact-email").value = data.ContactEmail;
+  document.getElementById("notes").value = data.Notes;
+  findBusinessType(data.businessType);
+  findCategory(data.selectCategory);
+  document.getElementById("percentage").value = data.CommissionPercentage;
+  document.getElementById("duration").value = data.ActiveFrom;
+  findPaymentMethod(data.paymentMethod);
+  newData = false;
+
+}
+function findCategory(data) {
+  let fnCategory = document.getElementsByName("category");
+  for (var i = 0; i < fnCategory.length; i++) {
+    for (var j = 0; j < data.length; j++) {
+      if (fnCategory[i].value == data[j]) {
+        fnCategory[i].selected = true;
+      }
+    }
+  }
+}
+function findAccountType(data) {
+  let fnAccount = document.getElementsByName("critical-account");
+  if (fnAccount[0] == data[0])
+    fnAccount[1].checked = true;
+  else
+    fnAccount[0].checked = true;
+}
+function findPaymentMethod(data) {
+  let fnPayment = document.getElementsByName("payment");
+  for (var i = 0; i < fnPayment.length; i++) {
+    for (var j = 0; j < data.length; j++) {
+      if (fnPayment[i].value == data[j]) {
+        fnPayment[i].checked = true;
+      }
+    }
   }
 }
