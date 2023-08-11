@@ -139,6 +139,28 @@
         </tr>
         <tr>
           <td>
+            <label for="criticalaccount"><b>Critical Account:</b></label>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="yes"
+              name="critical-account"
+              value="YES"
+            />
+
+            <label for="yes">YES</label>
+
+            <input type="checkbox" id="no" name="critical-account" value="NO" />
+
+            <label for="no">NO</label><br>
+
+            <sup>*</sup>If YES, we can provide extra care in case of any
+            queries.
+          </td>
+        </tr>
+        <tr>
+          <td>
             <label for="payment" name="payment-options"
               ><b>Payment options:</b></label
             ><br />
@@ -188,6 +210,7 @@
           <th>Percentage</th>
           <th>ActiveFrom</th>
           <!-- <th>Logo</th> -->
+          <th>Critical Account</th>
           <th>Payment</th>
           <th>Action</th>
         </tr>
