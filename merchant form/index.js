@@ -13,11 +13,12 @@ function onSubmit() {
   response.category = document.getElementById("category-variety").value;
   response.percentage = document.getElementById("percentage").value;
   response.duration = document.getElementById("duration").value;
+  response.critical =  cAccount();
   response.payment = callPayment();
   
 
   // var Edit = editButton();
-  // var save = document.getElementById("Edt-button")
+  // var Save = document.getElementById("Edt-button")
 
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
@@ -35,6 +36,7 @@ function onSubmit() {
   var cell12 = row.insertCell(11);
   var cell13 = row.insertCell(12);
   var cell14 = row.insertCell(13);
+  var cell15 = row.insertCell(14)
   // var cell14 = row.insertCell(13);
 
   cell1.innerHTML = response.name;
@@ -50,20 +52,30 @@ function onSubmit() {
   cell11.innerHTML = response.percentage;
   cell12.innerHTML = response.duration;
   // cell13.innerHTML = logo;
-  cell13.innerHTML = response.payment;
-  cell14.innerHTML =
+  cell13.innerHTML = response.critical
+  cell14.innerHTML = response.payment;
+  cell15.innerHTML =
     "<button id='Edt-button'>Edit</button> <button id= 'save-button'>Save</button>";
   localStorage.setItem("entries", JSON.stringify(response));
+  reset();
+  onload();
 }
-
-// function editButton(){
-//   var Edit = document.getElementById("Edt-button");
-//   var buttonType = "";
-//   for(i = 0;i < Edit.length;i++){
-//     if(Edit[i].checked) buttonType = Edit[i].value;
-//   }
-//   return buttonType;
-// }
+function reset() {
+  document.getElementById("fname").value = " ";
+  document.getElementById("mail").value = " ";
+  document.getElementById("number").value = " ";
+  document.getElementById("website").value = " ";
+  document.getElementById("contact-Name").value = " ";
+  document.getElementById("contact-number").value = " ";
+  document.getElementById("Contact-email").value = " ";
+  document.getElementById("notes").value = " ";
+  document.getElementsByName("type").checked = resetBussinessType();  
+  document.getElementsByName("category-variety").selected = resetCategory();
+  document.getElementById("percentage").value = " ";
+  document.getElementById("duration").value = " ";
+  document.getElementsByName("critical-account").checked = resetcAccount();
+  document.getElementsByName("payment-options").checked = resetPaymentMethod();
+}
 function role() {
   var radio = document.getElementsByName("role");
   var selectedType = "";
@@ -72,6 +84,15 @@ function role() {
   }
   return selectedType;
 }
+function cAccount(){
+  var critical = document.getElementById("yes");
+  var criticalAcc = [];
+  for (i=0; i < critical.length;i++){
+    if(critical[i].checked) criticalAcc.push(critical[i].value)
+  }
+return criticalAcc;
+}
+
 
 function callPayment() {
   var transaction = document.getElementsByName("payment");
