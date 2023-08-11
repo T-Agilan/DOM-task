@@ -1,6 +1,5 @@
 function onSubmit() {
   var response = {};
-  // let MyArray = [];
   response.name = document.getElementById("fname").value;
   response.email = document.getElementById("mail").value;
   response.phone = document.getElementById("number").value;
@@ -16,10 +15,6 @@ function onSubmit() {
   response.critical =  cAccount();
   response.payment = callPayment();
   
-
-  // var Edit = editButton();
-  // var Save = document.getElementById("Edt-button")
-
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
   var cell1 = row.insertCell(0);
@@ -58,8 +53,9 @@ function onSubmit() {
     "<button id='Edt-button'>Edit</button> <button id= 'save-button'>Save</button>";
   localStorage.setItem("entries", JSON.stringify(response));
   reset();
-  onload();
+  
 }
+
 function reset() {
   document.getElementById("fname").value = " ";
   document.getElementById("mail").value = " ";
@@ -69,13 +65,16 @@ function reset() {
   document.getElementById("contact-number").value = " ";
   document.getElementById("Contact-email").value = " ";
   document.getElementById("notes").value = " ";
-  document.getElementsByName("type").checked = resetBussinessType();  
+  document.getElementsByName("type").checked = resetBusiness();  
   document.getElementsByName("category-variety").selected = resetCategory();
   document.getElementById("percentage").value = " ";
   document.getElementById("duration").value = " ";
-  document.getElementsByName("critical-account").checked = resetcAccount();
-  document.getElementsByName("payment-options").checked = resetPaymentMethod();
+  document.getElementsByName("critical-account").checked = resetCAccount();
+  document.getElementsByName("payment").checked = resetPaymentMethod();
 }
+
+// <--------------------------function for checkboxes----------------------->
+
 function role() {
   var radio = document.getElementsByName("role");
   var selectedType = "";
@@ -84,16 +83,15 @@ function role() {
   }
   return selectedType;
 }
+
 function cAccount(){
-  var critical = document.getElementById("yes");
+  var critical = document.getElementsByName("critical-account");
   var criticalAcc = [];
   for (i=0; i < critical.length;i++){
     if(critical[i].checked) criticalAcc.push(critical[i].value)
   }
 return criticalAcc;
 }
-
-
 function callPayment() {
   var transaction = document.getElementsByName("payment");
   var selectedType = [];
@@ -101,4 +99,31 @@ function callPayment() {
     if (transaction[i].checked) selectedType.push(transaction[i].value);
   }
   return selectedType;
+}
+
+/*<---------------------- reset functions--------------------> */
+
+function resetBusiness() {
+  var Type = document.getElementsByName("role");
+  for (var i = 0; i < Type.length; i++) {
+    Type[i].checked = false;
+  }
+}
+function resetCategory(){
+  var Type = document.getElementsByName("category");
+  for (var i = 0; i < Type.length; i++) {
+    Type[i].checked = false;
+  }
+}
+function resetCAccount() {
+  var criticalAccount = document.getElementsByName("critical-account");
+  for (var i = 0; i < criticalAccount.length; i++) {
+    criticalAccount[i].checked = false;
+  }
+}
+function resetPaymentMethod(){
+  var payment = document.getElementsByName("payment");
+  for (var i = 0; i < payment.length; i++) {
+    payment[i].checked = false;
+  }
 }
