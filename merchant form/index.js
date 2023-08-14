@@ -12,9 +12,9 @@ function onSubmit() {
   response.category = document.getElementById("category-variety").value;
   response.percentage = document.getElementById("percentage").value;
   response.duration = document.getElementById("duration").value;
-  response.critical =  cAccount();
+  response.critical = cAccount();
   response.payment = callPayment();
-  
+
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
   var cell1 = row.insertCell(0);
@@ -31,7 +31,7 @@ function onSubmit() {
   var cell12 = row.insertCell(11);
   var cell13 = row.insertCell(12);
   var cell14 = row.insertCell(13);
-  var cell15 = row.insertCell(14)
+  var cell15 = row.insertCell(14);
   // var cell14 = row.insertCell(13);
 
   cell1.innerHTML = response.name;
@@ -47,19 +47,26 @@ function onSubmit() {
   cell11.innerHTML = response.percentage;
   cell12.innerHTML = response.duration;
   // cell13.innerHTML = logo;
-  cell13.innerHTML = response.critical
+  cell13.innerHTML = response.critical;
   cell14.innerHTML = response.payment;
-  // cell15.innerHTML =
-  //  "<button id='Edt-button'onClick=createEditHandler()>Edit</button> <button id= 'del-button'>Delete</button>";
   var editButton = document.createElement("button");
   editButton.innerHTML = "Edit";
-  editButton.addEventListener("click", function() {
+  editButton.addEventListener("click", function () {
     editRow(response);
   });
-  localStorage.setItem("entries", JSON.stringify(response));
 
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", function () {
+    deleteRow(response); // Pass the response object to the deleteRow function
+  });
+  cell15.appendChild(editButton);
+  cell15.appendChild(deleteButton);
+  var myArr = [];
+  myArr.push(response)
+  localStorage.setItem("entries", JSON.stringify(response));
+  localStorage.setItem("entries", JSON.stringify(myArr));
   reset();
-  
 }
 
 function reset() {
@@ -71,7 +78,7 @@ function reset() {
   document.getElementById("contact-number").value = " ";
   document.getElementById("Contact-email").value = " ";
   document.getElementById("notes").value = " ";
-  document.getElementsByName("type").checked = resetBusiness();  
+  document.getElementsByName("type").checked = resetBusiness();
   document.getElementsByName("category-variety").selected = resetCategory();
   document.getElementById("percentage").value = " ";
   document.getElementById("duration").value = " ";
@@ -90,13 +97,13 @@ function role() {
   return selectedType;
 }
 
-function cAccount(){
+function cAccount() {
   var critical = document.getElementsByName("critical-account");
   var criticalAcc = [];
-  for (i=0; i < critical.length;i++){
-    if(critical[i].checked) criticalAcc.push(critical[i].value)
+  for (i = 0; i < critical.length; i++) {
+    if (critical[i].checked) criticalAcc.push(critical[i].value);
   }
-return criticalAcc;
+  return criticalAcc;
 }
 function callPayment() {
   var transaction = document.getElementsByName("payment");
@@ -115,7 +122,7 @@ function resetBusiness() {
     Type[i].checked = false;
   }
 }
-function resetCategory(){
+function resetCategory() {
   var Type = document.getElementsByName("category");
   for (var i = 0; i < Type.length; i++) {
     Type[i].checked = false;
@@ -127,7 +134,7 @@ function resetCAccount() {
     criticalAccount[i].checked = false;
   }
 }
-function resetPaymentMethod(){
+function resetPaymentMethod() {
   var payment = document.getElementsByName("payment");
   for (var i = 0; i < payment.length; i++) {
     payment[i].checked = false;
@@ -135,14 +142,22 @@ function resetPaymentMethod(){
 }
 // <-------------------------------------Edit-functions------------------------>
 
-function createEditHandler(data) {
-  return function () {
-    populateForm(data);
-  }
-}
-function populateForm(data) {
-  document.getElementById("submit").innerText = "Update";
+// function createEditHandler(data) {
+//   return function () {
+//     populateForm(data);
+//   }
+// }
+let localStorageData = JSON.parse(localStorage.getItem("details"));
+if (localStorageData === null) localStorageData = [];
+
+localStorageData.push(data);
+localStorage.setItem("details", JSON.stringify(localStorageData));
+
+loadTableData();
+
+function editRow(data) {
   document.getElementById("fname").value = data.Name;
+  console.log(data.Name);
   document.getElementById("mail").value = data.Email;
   document.getElementById("number").value = data.Phone;
   document.getElementById("website").value = data.Website;
@@ -155,8 +170,6 @@ function populateForm(data) {
   document.getElementById("percentage").value = data.CommissionPercentage;
   document.getElementById("duration").value = data.ActiveFrom;
   findPaymentMethod(data.paymentMethod);
-  newData = false;
-
 }
 function findCategory(data) {
   let fnCategory = document.getElementsByName("category");
@@ -168,12 +181,10 @@ function findCategory(data) {
     }
   }
 }
-function findAccountType(data) {
+function findBusinessType(data) {
   let fnAccount = document.getElementsByName("critical-account");
-  if (fnAccount[0] == data[0])
-    fnAccount[1].checked = true;
-  else
-    fnAccount[0].checked = true;
+  if (fnAccount[0] == false) fnAccount[1].checked = true;
+  else fnAccount[0].checked = true;
 }
 function findPaymentMethod(data) {
   let fnPayment = document.getElementsByName("payment");
