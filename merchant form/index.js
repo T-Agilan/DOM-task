@@ -54,9 +54,10 @@ function onSubmit() {
   editButton.innerHTML = "Edit";
   editButton.addEventListener("click", function () {
     editRow(response);
+    console.log(response);
   });
 
-  const deleteButton = document.createElement("button");
+  var deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", function () {
     deleteRow(response); // Pass the response object to the deleteRow function
@@ -170,13 +171,15 @@ function findCategory(data) {
     }
   }
 }
-function findCritical(data){
+function findCritical(data) {
+  data;
   let fnCritical = document.getElementsByName("critical-account");
-  if(fnCritical[0] == false) fnCritical[1].checked = true;
+  if (fnCritical[0] == false) fnCritical[1].checked = true;
   else fnCritical[0].checked = true;
 }
 
 function findBusinessType(data) {
+  data;
   let fnAccount = document.getElementsByName("role");
   if (fnAccount[0] == false) fnAccount[1].checked = true;
   else fnAccount[0].checked = true;
@@ -190,5 +193,22 @@ function findPaymentMethod(data) {
         fnPayment[i].checked = true;
       }
     }
+  }
+}
+
+// <-------------------------------------delete table row------------------->
+function deleteRow(data) {
+  var retriveData = JSON.parse(localStorage.getItem("entries"));
+
+  var index = retriveData.findIndex(function (obj) {
+    return obj.email === data.email && obj.phone === data.phone;
+  });
+
+  if (index !== -1) {
+    retriveData.splice(index, 1);
+    localStorage.setItem("entries", JSON.stringify(retriveData));
+
+    var table = document.getElementById("dataTable");
+    table.deleteRow(index + 1); 
   }
 }
