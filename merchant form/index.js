@@ -1,5 +1,22 @@
-const myArr = [];
+var values = null;
+var row;
+var myArr = [];
 function onSubmit() {
+  let fetchData = localStorage.getItem("entries");
+  if (fetchData != null) {
+    myArr = JSON.parse(fetchData);
+  }
+
+  if (values == null) {
+    insertNewRecord();
+  } else updateRow();
+  localStorage.setItem("entries", JSON.stringify(myArr));
+  reset();
+}
+window.onload = function () {
+  localStorage.removeItem("entries");
+};
+function insertNewRecord() {
   var response = {};
   response.name = document.getElementById("fname").value;
   response.email = document.getElementById("mail").value;
@@ -15,6 +32,8 @@ function onSubmit() {
   response.duration = document.getElementById("duration").value;
   response.critical = cAccount();
   response.payment = callPayment();
+
+  myArr.push(response);
 
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
@@ -54,7 +73,6 @@ function onSubmit() {
   editButton.innerHTML = "Edit";
   editButton.addEventListener("click", function () {
     editRow(response);
-    console.log(response);
   });
 
   var deleteButton = document.createElement("button");
@@ -64,10 +82,6 @@ function onSubmit() {
   });
   cell15.appendChild(editButton);
   cell15.appendChild(deleteButton);
-
-  myArr.push(response);
-  localStorage.setItem("entries", JSON.stringify(myArr));
-  reset();
 }
 
 function reset() {
@@ -145,12 +159,13 @@ function resetPaymentMethod() {
 // <-------------------------------------Edit-functions------------------------>
 
 function editRow(data) {
+  values = 1;
   document.getElementById("fname").value = data.name;
   document.getElementById("mail").value = data.email;
   document.getElementById("number").value = data.phone;
   document.getElementById("website").value = data.website;
   document.getElementById("contact-Name").value = data.contactName;
-  document.getElementById("contact-number").value = data.contactPhone;
+  document.getElementById("contact-number").value = data.contactNumber;
   document.getElementById("Contact-email").value = data.contactMail;
   document.getElementById("notes").value = data.notes;
   findBusinessType(data.type);
@@ -159,6 +174,13 @@ function editRow(data) {
   document.getElementById("duration").value = data.duration;
   findCritical(data.critical);
   findPaymentMethod(data.payment);
+
+  var retrieveData = JSON.parse(localStorage.getItem("entries"));
+  var index = retrieveData.findIndex(function (obj) {
+    return obj.email === data.email && obj.phone === data.phone;
+  });
+  row = index;
+  localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
 
 function findCategory(data) {
@@ -196,19 +218,59 @@ function findPaymentMethod(data) {
   }
 }
 
+// <------------------------------------------updateRow-------------------------->
+
+function updateRow() {
+  let newData = {};
+  var retrieveData = JSON.parse(localStorage.getItem("entries"));
+  newData.name = document.getElementById("fname").value;
+  newData.email = document.getElementById("mail").value;
+  newData.phone = document.getElementById("number").value;
+  newData.website = document.getElementById("website").value;
+  newData.contactName = document.getElementById("contact-Name").value;
+  newData.contactPhone = document.getElementById("contact-number").value;
+  newData.contactMail = document.getElementById("Contact-email").value;
+  newData.notes = document.getElementById("notes").value;
+  newData.type = role();
+  newData.category = document.getElementById("category-variety").value;
+  newData.percentage = document.getElementById("percentage").value;
+  newData.duration = document.getElementById("duration").value;
+  newData.critical = cAccount();
+  newData.payment = callPayment();
+
+  
+  var table = document.getElementById("dataTable");
+  var editRow = table.rows[row + 1];
+  editRow.cells[0].innerHTML = newData.name;
+  editRow.cells[1].innerHTML = newData.email;
+  editRow.cells[2].innerHTML = newData.phone;
+  editRow.cells[3].innerHTML = newData.website;
+  editRow.cells[4].innerHTML = newData.contactName;
+  editRow.cells[5].innerHTML = newData.contactPhone;
+  editRow.cells[6].innerHTML = newData.contactMail;
+  editRow.cells[7].innerHTML = newData.notes;
+  editRow.cells[8].innerHTML = newData.type;
+  editRow.cells[9].innerHTML = newData.category;
+  editRow.cells[10].innerHTML = newData.percentage;
+  editRow.cells[11].innerHTML = newData.duration;
+  editRow.cells[12].innerHTML = newData.critical;
+  editRow.cells[13].innerHTML = newData.payment;
+  localStorage.setItem("entries", JSON.stringify(retrieveData));
+}
+
 // <-------------------------------------delete table row------------------->
 function deleteRow(data) {
-  var retriveData = JSON.parse(localStorage.getItem("entries"));
+  var retrieveData = JSON.parse(localStorage.getItem("entries"));
 
-  var index = retriveData.findIndex(function (obj) {
+  var index = retrieveData.findIndex(function (obj) {
     return obj.email === data.email && obj.phone === data.phone;
   });
 
   if (index !== -1) {
-    retriveData.splice(index, 1);
-    localStorage.setItem("entries", JSON.stringify(retriveData));
+    retrieveData.splice(index, 1);
+    localStorage.setItem("entries", JSON.stringify(retrieveData));
 
     var table = document.getElementById("dataTable");
-    table.deleteRow(index + 1); 
+    table.deleteRow(index + 1);
   }
 }
