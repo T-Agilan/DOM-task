@@ -8,7 +8,7 @@ function onSubmit() {
   }
 
   if (values == null) {
-    insertNewRecord();
+    insertNewData();
   } else updateRow();
   localStorage.setItem("entries", JSON.stringify(myArr));
   reset();
@@ -16,7 +16,7 @@ function onSubmit() {
 window.onload = function () {
   localStorage.removeItem("entries");
 };
-function insertNewRecord() {
+function insertNewData() {
   var response = {};
   response.name = document.getElementById("fname").value;
   response.email = document.getElementById("mail").value;
@@ -32,7 +32,6 @@ function insertNewRecord() {
   response.duration = document.getElementById("duration").value;
   response.critical = cAccount();
   response.payment = callPayment();
-
   myArr.push(response);
 
   var table = document.getElementById("dataTable");
@@ -179,8 +178,9 @@ function editRow(data) {
   var index = retrieveData.findIndex(function (obj) {
     return obj.email === data.email && obj.phone === data.phone;
   });
+
   row = index;
-  localStorage.setItem("entries", JSON.stringify(retrieveData));
+  // localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
 
 function findCategory(data) {
@@ -238,7 +238,6 @@ function updateRow() {
   newData.critical = cAccount();
   newData.payment = callPayment();
 
-  
   var table = document.getElementById("dataTable");
   var editRow = table.rows[row + 1];
   editRow.cells[0].innerHTML = newData.name;
@@ -255,6 +254,7 @@ function updateRow() {
   editRow.cells[11].innerHTML = newData.duration;
   editRow.cells[12].innerHTML = newData.critical;
   editRow.cells[13].innerHTML = newData.payment;
+  myArr[row] = newData;
   localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
 
@@ -268,9 +268,9 @@ function deleteRow(data) {
 
   if (index !== -1) {
     retrieveData.splice(index, 1);
-    localStorage.setItem("entries", JSON.stringify(retrieveData));
 
     var table = document.getElementById("dataTable");
     table.deleteRow(index + 1);
   }
+  localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
