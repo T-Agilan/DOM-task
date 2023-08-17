@@ -23,3 +23,6 @@ body {
   background-image: url(bg2.avif);
   background-size: cover;
 }
+#Submit,#reset{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
