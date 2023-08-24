@@ -187,20 +187,29 @@
         </tr>
         <tr>
           <td>
-            <button
-              type="button"
-              id="Submit"
-              onclick="onSubmit() ;"
-            >
+            <button type="button" id="Submit" onclick="onSubmit()">
               Submit
             </button>
             <button type="reset" id="reset" name="re-set">Reset</button>
-            
           </td>
         </tr>
-        
       </table>
-      <input type="button" onclick="Filter()" name="role" value="filter-type">  
+      <input type="radio" name="filterType" value="smallBusiness" /> Small
+      Business
+      <input type="radio" name="filterType" value="enterprise" /> Enterprise
+      <input type="radio" name="filterType" value="entrepreneur" /> Entrepreneur
+      <button type="button" onclick="filterData()">Apply Filter</button>
+      <button type="button" onclick="clearFilter()">Clear Filter</button><br />
+      
+      <select id = "select-Filter">
+        <option value="Clothes">Clothes</option>
+        <option value="Toys">Toys</option>
+        <option value="Groceries">Groceries</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Digital">Digital</option>
+      </select>
+      <button type="button" onclick="filterSelect()">Apply Filter</button>
+      <button type="button" onclick="clearSelect()">Clear Filter</button><br />
     </form>
 
     <br /><br />
