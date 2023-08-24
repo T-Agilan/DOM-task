@@ -13,7 +13,7 @@ function onSubmit() {
     updateRow();
     values = null; // Reset the values variable after updating
   }
-
+  
   localStorage.setItem("entries", JSON.stringify(myArr));
   reset();
 }
@@ -72,98 +72,101 @@ function insertNewData() {
   // cell13.innerHTML = logo;
   cell13.innerHTML = response.critical;
   cell14.innerHTML = response.payment;
+  
 
   // <-------------------------------------Edit-functions------------------------>
-  var editButton = document.createElement("button");
-  editButton.innerHTML = "Edit";
-  editButton.addEventListener("click", function () {
-    index = myArr.findIndex(function (obj) {
-      return obj.email === response.email && obj.phone === response.phone;
-    });
+var editButton = document.createElement("button");
+editButton.innerHTML = "Edit";
+editButton.addEventListener("click", function () {
+  index = myArr.findIndex(function (obj) {
+    return obj.email === response.email && obj.phone === response.phone;
+  });
+   
+  if (index !== -1) {
+    console.log(myArr[index]);
+    editRow(myArr[index]);
+  } else {
+    // Handle case where the data is not found in myArr
+    console.log("Data not found.");
+  }
+});
 
-    if (index !== -1) {
-      editRow(myArr[index]);
-    } else {
-      console.log("Data not found.");
-    }
+function editRow(data) {
+  values = 1;
+  if (!data.history) {
+    data.history = [];
+  }
+
+  // Add the current data to the history if it's not already there
+  if (data.history.length === 0 || !isObjectEqual(data.history[data.history.length - 1], data)) {
+    data.history.push({ ...data });
+  }
+
+  // Restore data from history (re-edit the first edited data)
+  if (data.history.length > 1) {
+    const editedData = data.history[0];
+    restoreFormData(editedData);
+  } else {
+    restoreFormData(data);
+  }
+
+
+  document.getElementById("fname").value = data.name;
+  document.getElementById("mail").value = data.email;
+  document.getElementById("number").value = data.phone;
+  document.getElementById("website").value = data.website;
+  document.getElementById("contact-Name").value = data.contactName;
+  document.getElementById("contact-number").value = data.contactNumber;
+  document.getElementById("Contact-email").value = data.contactMail;
+  document.getElementById("notes").value = data.notes;
+  findBusinessType(data.type);
+  findCategory(data.category);
+  document.getElementById("percentage").value = data.percentage;
+  document.getElementById("duration").value = data.duration;
+  findCritical(data.critical);
+  findPaymentMethod(data.payment);
+
+  var retrieveData = JSON.parse(localStorage.getItem("entries"));
+  var index = retrieveData.findIndex(function (obj) {
+    return obj.email === data.email && obj.phone === data.phone;
   });
 
-  function editRow(data) {
-    values = 1;
-    if (!data.history) {
-      data.history = [];
-    }
-
-    if (
-      data.history.length === 0 ||
-      !isObjectEqual(data.history[data.history.length - 1], data)
-    ) {
-      data.history.push({ ...data });
-    }
-
-    // Restore data from history (re-edit the first edited data)
-    if (data.history.length > 1) {
-      const editedData = data.history[0];
-      restoreFormData(editedData);
-    } else {
-      restoreFormData(data);
-    }
-
-    document.getElementById("fname").value = data.name;
-    document.getElementById("mail").value = data.email;
-    document.getElementById("number").value = data.phone;
-    document.getElementById("website").value = data.website;
-    document.getElementById("contact-Name").value = data.contactName;
-    document.getElementById("contact-number").value = data.contactNumber;
-    document.getElementById("Contact-email").value = data.contactMail;
-    document.getElementById("notes").value = data.notes;
-    findBusinessType(data.type);
-    findCategory(data.category);
-    document.getElementById("percentage").value = data.percentage;
-    document.getElementById("duration").value = data.duration;
-    findCritical(data.critical);
-    findPaymentMethod(data.payment);
-
-    var retrieveData = JSON.parse(localStorage.getItem("entries"));
-    var index = retrieveData.findIndex(function (obj) {
-      return obj.email === data.email && obj.phone === data.phone;
-    });
-
-    row = index;
-
-    // Function to compare two object
-    function isObjectEqual(obj1, obj2) {
-      return JSON.stringify(obj1) === JSON.stringify(obj2);
-    }
+  row = index;
+  
+// Function to compare two object
+  function isObjectEqual(obj1, obj2) {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
   }
+  // localStorage.setItem("entries", JSON.stringify(retrieveData));
+}
 
-  // -----------------------------------------------Function to restore form data
-
-  function restoreFormData(data) {
-    document.getElementById("fname").value = data.name;
-    document.getElementById("mail").value = data.email;
-    document.getElementById("number").value = data.phone;
-    document.getElementById("website").value = data.website;
-    document.getElementById("contact-Name").value = data.contactName;
-    document.getElementById("contact-number").value = data.contactNumber;
-    document.getElementById("Contact-email").value = data.contactMail;
-    document.getElementById("notes").value = data.notes;
-    findBusinessType(data.type);
-    findCategory(data.category);
-    document.getElementById("percentage").value = data.percentage;
-    document.getElementById("duration").value = data.duration;
-    findCritical(data.critical);
-    findPaymentMethod(data.payment);
-  }
+// Function to restore form data
+function restoreFormData(data) {
+  document.getElementById("fname").value = data.name;
+  document.getElementById("mail").value = data.email;
+  document.getElementById("number").value = data.phone;
+  document.getElementById("website").value = data.website;
+  document.getElementById("contact-Name").value = data.contactName;
+  document.getElementById("contact-number").value = data.contactNumber;
+  document.getElementById("Contact-email").value = data.contactMail;
+  document.getElementById("notes").value = data.notes;
+  findBusinessType(data.type);
+  findCategory(data.category);
+  document.getElementById("percentage").value = data.percentage;
+  document.getElementById("duration").value = data.duration;
+  findCritical(data.critical);
+  findPaymentMethod(data.payment);
+}
   var deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", function () {
-    deleteRow(response);
+    deleteRow(response); // Pass the response object to the deleteRow function
   });
   cell15.appendChild(editButton);
   cell15.appendChild(deleteButton);
-}
+  row.classList.add(response.type.toLowerCase());
 
+}
 function reset() {
   document.getElementById("fname").value = " ";
   document.getElementById("mail").value = " ";
@@ -236,6 +239,8 @@ function resetPaymentMethod() {
   }
 }
 
+
+
 function findCategory(data) {
   let fnCategory = document.getElementsByName("critical-account");
   for (var i = 0; i < fnCategory.length; i++) {
@@ -293,26 +298,28 @@ function updateRow() {
 
   var table = document.getElementById("dataTable");
   if (index >= 0) {
-    var editRow = table.rows[index + 1];
-    editRow.cells[0].innerHTML = newData.name;
-    editRow.cells[1].innerHTML = newData.email;
-    editRow.cells[2].innerHTML = newData.phone;
-    editRow.cells[3].innerHTML = newData.website;
-    editRow.cells[4].innerHTML = newData.contactName;
-    editRow.cells[5].innerHTML = newData.contactPhone;
-    editRow.cells[6].innerHTML = newData.contactMail;
-    editRow.cells[7].innerHTML = newData.notes;
-    editRow.cells[8].innerHTML = newData.type;
-    editRow.cells[9].innerHTML = newData.category;
-    editRow.cells[10].innerHTML = newData.percentage;
-    editRow.cells[11].innerHTML = newData.duration;
-    editRow.cells[12].innerHTML = newData.critical;
-    editRow.cells[13].innerHTML = newData.payment;
-    myArr[index] = newData;
-    localStorage.setItem("entries", JSON.stringify(retrieveData));
-  } else {
-    console.log("Invalid row index.");
-  }
+  var editRow = table.rows[index + 1 ];
+  console.log("Edit row:", editRow)
+  editRow.cells[0].innerHTML = newData.name;
+  editRow.cells[1].innerHTML = newData.email;
+  editRow.cells[2].innerHTML = newData.phone;
+  editRow.cells[3].innerHTML = newData.website;
+  editRow.cells[4].innerHTML = newData.contactName;
+  editRow.cells[5].innerHTML = newData.contactPhone;
+  editRow.cells[6].innerHTML = newData.contactMail;
+  editRow.cells[7].innerHTML = newData.notes;
+  editRow.cells[8].innerHTML = newData.type;
+  editRow.cells[9].innerHTML = newData.category;
+  editRow.cells[10].innerHTML = newData.percentage;
+  editRow.cells[11].innerHTML = newData.duration;
+  editRow.cells[12].innerHTML = newData.critical;
+  editRow.cells[13].innerHTML = newData.payment;
+  myArr[index] = newData;
+  localStorage.setItem("entries", JSON.stringify(retrieveData));
+}
+else {
+  console.log("Invalid row index.");
+}
 }
 
 // <-------------------------------------delete table row------------------->
@@ -331,49 +338,61 @@ function deleteRow(data) {
   }
   localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
-function Filter() {
-  //------------------------filter out  data by category name for radio buttons
+// <--------------------------------filterData--------------------------------
 
-  var category = JSON.parse(localStorage.getItem("entries"));
-  console.log(category);
-  var FilterType = document.getElementsByName("role");
-  for (var i = 0; i < FilterType.length; i++) {
-    FilterType[i].addEventListener("click", function () {
-      filterAndDisplayData();
-    });
-    console.log(FilterType);
+function getSelectedFilterType() {
+  var filterRadios = document.getElementsByName("filterType");
+
+  for (var i = 0; i < filterRadios.length; i++) {
+    if (filterRadios[i].checked) {
+      return filterRadios[i].value;
+    }
   }
+}
+function filterData() {
+  var filterType = getSelectedFilterType();
 
-  function filterAndDisplayData() {
-    var selectedCategory = getSelectedCategory();
-    clearTableRows();
-    var filteredData = myArr.filter(function (item) {
-      return item.category === selectedCategory;
-    });
+  if (filterType) {
+    var table = document.getElementById("dataTable");
 
-    filteredData.forEach(function (item) {
-      insertNewDataRow(item);
-    });
-    console.log(filteredData);
-  }
-  function getSelectedCategory() {
-    var FilterType = document.getElementsByName("role");
-    for (var i = 0; i < FilterType.length; i++) {
-      if (FilterType[i].checked) {
-        return FilterType[i].value;
+    for (var i = 1; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      if (row.classList.contains(filterType.toLowerCase())) {
+        row.style.display = ""; 
+      } else {
+        row.style.display = "none"; 
       }
     }
-    console.log("getSelectedCategory");
-    // return null;
   }
-  //clearing table rows
-  function clearTableRows() {
-    var table = document.getElementById("dataTable");
-    while (table.rows.length > 1) {
-      table.deleteRow(0);
+}
+
+function clearFilter() {
+  var table = document.getElementById("dataTable");
+  for (var i = 1; i < table.rows.length; i++) {
+    table.rows[i].style.display = ""; 
+  }
+}
+
+// <-------------------------------------filterSelect-------------------------->
+function getSelectFilter(){
+  var selectFilter = document.getElementById("select-Filter");
+  for(var i = 0; i < table.rows.length; i++) {
+    if(selectFilter[i].checked) {
+      return selectFilter[i].value;
     }
   }
-  function insertNewDataRow(data) {
-    insertNewData(data);
+}
+function filterSelect(){
+  var select = getSelectFilter();
+  if(select) {
+    var table = document.getElementsById('dataTable');
+    for (var i = 1; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      if (row.classList.contains(select.toLowerCase())) {
+        row.style.display = ""; 
+      } else {
+        row.style.display = "none"; 
+      }
   }
+}
 }
