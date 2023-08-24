@@ -9,7 +9,11 @@ function onSubmit() {
 
   if (values == null) {
     insertNewData();
-  } else updateRow();
+  } else {
+    updateRow();
+    values = null; // Reset the values variable after updating
+  }
+  
   localStorage.setItem("entries", JSON.stringify(myArr));
   reset();
 }
