@@ -239,7 +239,7 @@ function updateRow() {
   newData.payment = callPayment();
 
   var table = document.getElementById("dataTable");
-  var editRow = table.rows[row + 1];
+  var editRow = table.rows[row + 1 ];
   editRow.cells[0].innerHTML = newData.name;
   editRow.cells[1].innerHTML = newData.email;
   editRow.cells[2].innerHTML = newData.phone;
@@ -273,4 +273,50 @@ function deleteRow(data) {
     table.deleteRow(index + 1);
   }
   localStorage.setItem("entries", JSON.stringify(retrieveData));
+}
+function Filter() {
+
+  //filter out  data by category name for radio buttons
+var category = JSON.parse(localStorage.getItem("entries"));
+console.log(category);
+  var FilterType = document.getElementsByName("role");
+  for (var i = 0; i < FilterType.length; i++) {
+    FilterType[i].addEventListener("click", function () {
+      filterAndDisplayData();
+    });
+    console.log(FilterType);
+  }
+
+  function filterAndDisplayData() {
+    var selectedCategory = getSelectedCategory();
+    clearTableRows();
+    var filteredData = myArr.filter(function (item) {
+      return item.category === selectedCategory;
+    });
+
+    filteredData.forEach(function (item) {
+      insertNewDataRow(item);
+    });
+    console.log(filteredData);
+  }
+  function getSelectedCategory() {
+    var FilterType = document.getElementsByName("role");
+    for (var i = 0; i < FilterType.length; i++) {
+      if (FilterType[i].checked) {
+        return FilterType[i].value;
+      }
+    }
+    console.log("getSelectedCategory");
+    // return null;
+  }
+  //clearing table rows
+  function clearTableRows() {
+    var table = document.getElementById("dataTable");
+    while (table.rows.length > 1) {
+      table.deleteRow(0);
+    }
+  }
+  function insertNewDataRow(data) {
+    insertNewData(data);
+  }
 }
