@@ -153,7 +153,7 @@
 
             <input type="checkbox" id="no" name="critical-account" value="NO" />
 
-            <label for="no">NO</label><br>
+            <label for="no">NO</label><br />
 
             <sup>*</sup>If YES, we can provide extra care in case of any
             queries.
@@ -187,14 +187,24 @@
         </tr>
         <tr>
           <td>
-            <button type="button" onclick="onSubmit()">Submit</button>
+            <button
+              type="button"
+              id="Submit"
+              onclick="onSubmit() ;"
+            >
+              Submit
+            </button>
             <button type="reset" id="reset" name="re-set">Reset</button>
+            
           </td>
         </tr>
+        
       </table>
+      <input type="button" onclick="Filter()" name="role" value="filter-type">  
     </form>
+
     <br /><br />
-    <table id="dataTable">
+    <table id="dataTable" class="table-scroll">
       <thead>
         <tr class="table-bottom">
           <th>Name</th>
@@ -215,6 +225,7 @@
           <th>Action</th>
         </tr>
       </thead>
+      <tbody></tbody>
     </table>
     <script src="index.js"></script>
   </body>
