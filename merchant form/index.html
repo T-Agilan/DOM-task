@@ -194,23 +194,38 @@
           </td>
         </tr>
       </table>
-      <input type="radio" name="filterType" value="smallBusiness" /> Small
-      Business
-      <input type="radio" name="filterType" value="enterprise" /> Enterprise
-      <input type="radio" name="filterType" value="entrepreneur" /> Entrepreneur
-      <button type="button" onclick="filterData()">Apply Filter</button>
-      <button type="button" onclick="clearFilter()">Clear Filter</button><br />
-      
-      <select id = "select-Filter">
-        <option value="Clothes">Clothes</option>
-        <option value="Toys">Toys</option>
-        <option value="Groceries">Groceries</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Digital">Digital</option>
-      </select>
-      <button type="button" onclick="filterSelect()">Apply Filter</button>
-      <button type="button" onclick="clearSelect()">Clear Filter</button><br />
     </form>
+    <input type="radio" name="filterType" value="smallBusiness" /> Small
+    Business
+    <input type="radio" name="filterType" value="enterprise" /> Enterprise
+    <input type="radio" name="filterType" value="entrepreneur" /> Entrepreneur
+    <button type="button" onclick="filterData()">Apply Filter</button>
+    <button type="button" onclick="clearFilter()">Clear Filter</button><br />
+
+    <select id="selectFilter">
+      <option value="All">All</option>
+      <option value="Clothes">Clothes</option>
+      <option value="Toys">Toys</option>
+      <option value="Groceries">Groceries</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Digital">Digital</option>
+    </select>
+    <button type="button" onclick="filterSelect()">Apply Filter</button>
+    <button type="button" onclick="clearSelect()">Clear Filter</button><br />
+
+    <input type="checkbox" name="filterCheckbox" value="Yes" /> Yes
+    <input type="checkbox" name="filterCheckbox" value="No" /> No
+    <button type="button" onclick="filterCheckboxes()">
+      Apply Filter
+    </button>
+    <button type="button" onclick="clearFilter()">Clear Filter</button><br />
+    
+    <input type="checkbox" name="paymentCheckbox" value="Cash on delivery" /> Cash on delivery
+    <input type="checkbox" name="paymentCheckbox" value="UPI" /> UPI
+    <input type="checkbox" name="paymentCheckbox" value="Card payment" /> Card payment
+    <button type="button" onclick="filterPayment()">Apply Payment Filter</button>
+  <button type="button" onclick="clearPaymentFilter()">Clear Payment Filter</button>
+
 
     <br /><br />
     <table id="dataTable" class="table-scroll">
