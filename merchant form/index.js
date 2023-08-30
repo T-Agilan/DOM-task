@@ -73,7 +73,7 @@ function insertNewData() {
   cell13.innerHTML = response.critical;
   cell14.innerHTML = response.payment;
 
-  // <-------------------------------------Edit-functions------------------------>
+  //Edit-functions for output cell..!
   var editButton = document.createElement("button");
   editButton.innerHTML = "Edit";
   editButton.addEventListener("click", function () {
@@ -85,7 +85,6 @@ function insertNewData() {
       console.log(myArr[index]);
       editRow(myArr[index]);
     } else {
-      // Handle case where the data is not found in myArr
       console.log("Data not found.");
     }
   });
@@ -138,10 +137,9 @@ function insertNewData() {
     function isObjectEqual(obj1, obj2) {
       return JSON.stringify(obj1) === JSON.stringify(obj2);
     }
-    // localStorage.setItem("entries", JSON.stringify(retrieveData));
   }
 
-  // Function to restore form data
+  // Function to restore form data in a table..!
   function restoreFormData(data) {
     document.getElementById("fname").value = data.name;
     document.getElementById("mail").value = data.email;
@@ -161,7 +159,7 @@ function insertNewData() {
   var deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", function () {
-    deleteRow(response); // Pass the response object to the deleteRow function
+    deleteRow(response);
   });
   cell15.appendChild(editButton);
   cell15.appendChild(deleteButton);
@@ -184,7 +182,7 @@ function reset() {
   document.getElementsByName("payment").checked = resetPaymentMethod();
 }
 
-// <--------------------------function for checkboxes----------------------->
+//function for checkboxes..!
 
 function role() {
   var radio = document.getElementsByName("role");
@@ -212,7 +210,7 @@ function callPayment() {
   return selectedType;
 }
 
-/*<---------------------- reset functions--------------------> */
+// reset functions for radio buttons and checkboxes..!
 
 function resetBusiness() {
   var Type = document.getElementsByName("role");
@@ -265,8 +263,8 @@ function findBusinessType(data) {
 
 function findPaymentMethod(data) {
   let fnPayment = document.getElementsByName("payment");
-  for (var i = 0; i < fnPayment.length; i++) {
-    for (var j = 0; j < data.length; j++) {
+  for (let i = 0; i < fnPayment.length; i++) {
+    for (let j = 0; j < data.length; j++) {
       if (fnPayment[i].value == data[j]) {
         fnPayment[i].checked = true;
       }
@@ -274,7 +272,7 @@ function findPaymentMethod(data) {
   }
 }
 
-// <------------------------------------------updateRow-------------------------->
+//updateRow in a output table..!
 
 function updateRow() {
   let newData = {};
@@ -319,7 +317,7 @@ function updateRow() {
   }
 }
 
-// <-------------------------------------delete table row------------------->
+//delete table row...!
 function deleteRow(data) {
   var retrieveData = JSON.parse(localStorage.getItem("entries"));
 
@@ -335,7 +333,7 @@ function deleteRow(data) {
   }
   localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
-// <--------------------------------filterData from type option--------------------------------
+// filterData for type radio-buttons...!
 
 function getSelectedFilterType() {
   var filterRadios = document.getElementsByName("filterType");
@@ -369,111 +367,80 @@ function clearFilter() {
     table.rows[i].style.display = "";
   }
 }
+//filter for yes/no checkboxes
+let criticalAccountFilters = [];
 
-// <-------------------------------------filter for Select option-------------------------->
-//
-// function filterSelect() {
-//   var select = document.getElementById("selectFilter").value;
+function filterCriticalAccount(event) {
+  event.preventDefault(); // Prevent form submission
+  let checkboxes = document.getElementsByName("filterCheckbox ");
+  criticalAccountFilters = [];
 
-//   if (select !== "All") {
-//     var table = document.getElementById("dataTable");
-//     for (var i = 1; i < table.rows.length; i++) {
-//       var row = table.rows[i];
-//       if (row.classList.contains(select.toLowerCase())) {
-//         row.style.display = "";
-//       } else {
-//         row.style.display = "none";
-//       }
-//     }
-//   } else {
-//     clearFilter();
-//   }
-// }
-// console.log(filterSelect());
-
-// function clearFilter() {
-//   var table = document.getElementById("dataTable");
-//   for (var i = 1; i < table.rows.length; i++) {
-//     table.rows[i].style.display = "";
-//   }
-// }
-// <--------------------------------------------------filter for check box----------------------->
-
-
-function getSelectedFilterCheck() {
-  var checkbox = document.getElementsByName("filterCheckbox");
-
-  for (var i = 0; i < checkbox.length; i++) {
-    if (checkbox[i].checked) {
-      return checkbox[i].value;  
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      criticalAccountFilters.push(checkboxes[i].value);
     }
   }
-  // console.log(checkbox[i]);
- 
-  return null; // Return null if no checkbox is selected
+  applyCriticalAccountFilter();
 }
 
+function clearCriticalAccountFilter() {
+  applyCriticalAccountFilter();
+}
 
-function filterCheckboxes() {
-  // event.preventDefault();
-  var filterCheckbox = getSelectedFilterCheck();
+function applyCriticalAccountFilter() {
+  let table = document.getElementById("dataTable");
+  for (let i = 1; i < table.rows.length; i++) {
+    let row = table.rows[i];
+    let rowData = myArr[i - 1]; // Get the corresponding data from the array
 
-  if (filterCheckbox !== null) {
-    var table = document.getElementById("dataTable");
-    for (var i = 1; i < table.rows.length; i++) {
-      var row = table.rows[i];
-      var rowData = myArr[i - 1]; // Get the corresponding data from the array
+    let criticalAccountMatch =
+      criticalAccountFilters.length === 0 ||
+      criticalAccountFilters.some((option) => {
+        return rowData.critical.includes(option);
+      });
 
-      var checkboxValue = rowData.critical.includes(filterCheckbox);
-
-      if (checkboxValue) {
-        row.style.display = ""; // Show the row
-      } else {
-        row.style.display = "none"; // Hide the row
-      }
+    if (criticalAccountMatch) {
+      row.style.display = ""; // Show the row
+    } else {
+      row.style.display = "none"; // Hide the row
     }
-  } else {
-    clearFilter();
   }
 }
 
-function clearFilter() {
-  var table = document.getElementById("dataTable");
-  for (var i = 1; i < table.rows.length; i++) {
-    table.rows[i].style.display = ""; 
-  }
-}
-
-
-//filter function for payment methods
-
-var paymentFilters = []; // Store selected payment options
-
-function filterPayment() {
-  var checkboxes = document.getElementsByName("paymentCheckbox");
+// filter for payment check box
+var paymentFilters = [];
+function filterPayment(event) {
+  event.preventDefault(); // Prevent form submission
+  let checkboxes = document.getElementsByName("paymentCheckbox");
   paymentFilters = [];
 
-  for (var i = 0; i < checkboxes.length; i++) {
+  for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       paymentFilters.push(checkboxes[i].value);
     }
   }
-
   applyPaymentFilter();
 }
-
+// paymentFilters = [];
 function clearPaymentFilter() {
-  paymentFilters = [];
   applyPaymentFilter();
 }
-
 function applyPaymentFilter() {
-  var table = document.getElementById("dataTable");
-  for (var i = 1; i < table.rows.length; i++) {
-    var row = table.rows[i];
-    var rowData = myArr[i - 1]; // Get the corresponding data from the array
-
-    var paymentMatch = paymentFilters.length === 0 || paymentFilters.some(option => rowData.payment.includes(option));
+  let table = document.getElementById("dataTable");
+  for (let i = 1; i < table.rows.length; i++) {
+    let row = table.rows[i];
+    let rowData = myArr[i - 1]; // Get the corresponding data from the array
+    console.log("Row Data Payment Options:", rowData.payment);
+    let paymentMatch =
+      paymentFilters.length === 0 ||
+      paymentFilters.some((option) => {
+        const includes = rowData.payment.includes(option);
+        console.log("Checking Option:", option);
+        console.log("Includes Option:", rowData.payment.includes(option));
+        return includes;
+      });
+    console.log("Selected Payment Filters:", paymentFilters);
+    console.log("Payment Match:", paymentMatch);
 
     if (paymentMatch) {
       row.style.display = ""; // Show the row
