@@ -120,7 +120,7 @@
             <label for="percentage"><b>Commission percentage:</b></label>
           </td>
           <td>
-            <input type="number" id="percentage" name="percentage" /><br />
+            <input type="percentage" id="percentage" name="percentage" /><br />
           </td>
         </tr>
         <tr>
@@ -143,7 +143,7 @@
           </td>
           <td>
             <input
-              type="checkbox"
+              type="radio"
               id="yes"
               name="critical-account"
               value="YES"
@@ -151,7 +151,7 @@
 
             <label for="yes">YES</label>
 
-            <input type="checkbox" id="no" name="critical-account" value="NO" />
+            <input type="radio" id="no" name="critical-account" value="NO" />
 
             <label for="no">NO</label><br />
 
@@ -203,8 +203,8 @@
     <button type="button" onclick="filterData()">Apply Filter</button>
     <button type="button" onclick="clearFilter()">Clear Filter</button><br />
 
-    <input type="checkbox" name="filterCheckbox" value="Yes" /> Yes
-    <input type="checkbox" name="filterCheckbox" value="No" /> No
+    <input type="radio" name="criticalFilter" value="Yes" /> Yes
+    <input type="radio" name="criticalFilter" value="No" /> No
 
     <button type="button" onclick="filterCriticalAccount(event)">Apply Filter</button>
     <button type="button" onclick="clearFilter()">Clear Filter</button><br>
