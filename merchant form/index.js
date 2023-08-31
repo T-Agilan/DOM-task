@@ -6,14 +6,12 @@ function onSubmit() {
   if (fetchData != null) {
     myArr = JSON.parse(fetchData);
   }
-
   if (values == null) {
     insertNewData();
   } else {
     updateRow();
     values = null; // Reset the values variable after updating
   }
-
   localStorage.setItem("entries", JSON.stringify(myArr));
   reset();
 }
@@ -37,7 +35,6 @@ function insertNewData() {
   response.critical = cAccount();
   response.payment = callPayment();
   myArr.push(response);
-
   var table = document.getElementById("dataTable");
   var row = table.insertRow(table.rows.length);
   var cell1 = row.insertCell(0);
@@ -80,21 +77,18 @@ function insertNewData() {
     index = myArr.findIndex(function (obj) {
       return obj.email === response.email && obj.phone === response.phone;
     });
-
     if (index !== -1) {
-      console.log(myArr[index]);
+      // console.log(myArr[index]);
       editRow(myArr[index]);
     } else {
       console.log("Data not found.");
     }
   });
-
   function editRow(data) {
     values = 1;
     if (!data.history) {
       data.history = [];
     }
-
     // Add the current data to the history if it's not already there
     if (
       data.history.length === 0 ||
@@ -102,7 +96,6 @@ function insertNewData() {
     ) {
       data.history.push({ ...data });
     }
-
     // Restore data from history (re-edit the first edited data)
     if (data.history.length > 1) {
       const editedData = data.history[0];
@@ -110,7 +103,6 @@ function insertNewData() {
     } else {
       restoreFormData(data);
     }
-
     document.getElementById("fname").value = data.name;
     document.getElementById("mail").value = data.email;
     document.getElementById("number").value = data.phone;
@@ -130,15 +122,12 @@ function insertNewData() {
     var index = retrieveData.findIndex(function (obj) {
       return obj.email === data.email && obj.phone === data.phone;
     });
-
     row = index;
-
     // Function to compare two object
     function isObjectEqual(obj1, obj2) {
       return JSON.stringify(obj1) === JSON.stringify(obj2);
     }
   }
-
   // Function to restore form data in a table..!
   function restoreFormData(data) {
     document.getElementById("fname").value = data.name;
@@ -181,9 +170,7 @@ function reset() {
   document.getElementsByName("critical-account").checked = resetCAccount();
   document.getElementsByName("payment").checked = resetPaymentMethod();
 }
-
 //function for checkboxes..!
-
 function role() {
   var radio = document.getElementsByName("role");
   var selectedType = "";
@@ -192,7 +179,6 @@ function role() {
   }
   return selectedType;
 }
-
 function cAccount() {
   var critical = document.getElementsByName("critical-account");
   var criticalAcc = [];
@@ -209,9 +195,7 @@ function callPayment() {
   }
   return selectedType;
 }
-
 // reset functions for radio buttons and checkboxes..!
-
 function resetBusiness() {
   var Type = document.getElementsByName("role");
   for (var i = 0; i < Type.length; i++) {
@@ -236,7 +220,6 @@ function resetPaymentMethod() {
     payment[i].checked = false;
   }
 }
-
 function findCategory(data) {
   let fnCategory = document.getElementsByName("critical-account");
   for (var i = 0; i < fnCategory.length; i++) {
@@ -253,14 +236,12 @@ function findCritical(data) {
   if (fnCritical[0] == false) fnCritical[1].checked = true;
   else fnCritical[0].checked = true;
 }
-
 function findBusinessType(data) {
   data;
   let fnAccount = document.getElementsByName("role");
   if (fnAccount[0] == false) fnAccount[1].checked = true;
   else fnAccount[0].checked = true;
 }
-
 function findPaymentMethod(data) {
   let fnPayment = document.getElementsByName("payment");
   for (let i = 0; i < fnPayment.length; i++) {
@@ -271,9 +252,7 @@ function findPaymentMethod(data) {
     }
   }
 }
-
 //updateRow in a output table..!
-
 function updateRow() {
   let newData = {};
   var retrieveData = JSON.parse(localStorage.getItem("entries"));
@@ -316,15 +295,12 @@ function updateRow() {
     console.log("Invalid row index.");
   }
 }
-
 //delete table row...!
 function deleteRow(data) {
   var retrieveData = JSON.parse(localStorage.getItem("entries"));
-
   var index = retrieveData.findIndex(function (obj) {
     return obj.email === data.email && obj.phone === data.phone;
   });
-
   if (index !== -1) {
     retrieveData.splice(index, 1);
 
@@ -334,10 +310,8 @@ function deleteRow(data) {
   localStorage.setItem("entries", JSON.stringify(retrieveData));
 }
 // filterData for type radio-buttons...!
-
 function getSelectedFilterType() {
   var filterRadios = document.getElementsByName("filterType");
-
   for (var i = 0; i < filterRadios.length; i++) {
     if (filterRadios[i].checked) {
       return filterRadios[i].value;
@@ -346,10 +320,8 @@ function getSelectedFilterType() {
 }
 function filterData() {
   var filterType = getSelectedFilterType();
-
   if (filterType) {
     var table = document.getElementById("dataTable");
-
     for (var i = 1; i < table.rows.length; i++) {
       var row = table.rows[i];
       if (row.classList.contains(filterType.toLowerCase())) {
@@ -360,50 +332,10 @@ function filterData() {
     }
   }
 }
-
 function clearFilter() {
   var table = document.getElementById("dataTable");
   for (var i = 1; i < table.rows.length; i++) {
     table.rows[i].style.display = "";
-  }
-}
-//filter for yes/no checkboxes
-let criticalAccountFilters = [];
-
-function filterCriticalAccount(event) {
-  event.preventDefault(); // Prevent form submission
-  let checkboxes = document.getElementsByName("filterCheckbox ");
-  criticalAccountFilters = [];
-
-  for (let i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      criticalAccountFilters.push(checkboxes[i].value);
-    }
-  }
-  applyCriticalAccountFilter();
-}
-
-function clearCriticalAccountFilter() {
-  applyCriticalAccountFilter();
-}
-
-function applyCriticalAccountFilter() {
-  let table = document.getElementById("dataTable");
-  for (let i = 1; i < table.rows.length; i++) {
-    let row = table.rows[i];
-    let rowData = myArr[i - 1]; // Get the corresponding data from the array
-
-    let criticalAccountMatch =
-      criticalAccountFilters.length === 0 ||
-      criticalAccountFilters.some((option) => {
-        return rowData.critical.includes(option);
-      });
-
-    if (criticalAccountMatch) {
-      row.style.display = ""; // Show the row
-    } else {
-      row.style.display = "none"; // Hide the row
-    }
   }
 }
 
@@ -421,7 +353,6 @@ function filterPayment(event) {
   }
   applyPaymentFilter();
 }
-// paymentFilters = [];
 function clearPaymentFilter() {
   applyPaymentFilter();
 }
@@ -441,7 +372,6 @@ function applyPaymentFilter() {
       });
     console.log("Selected Payment Filters:", paymentFilters);
     console.log("Payment Match:", paymentMatch);
-
     if (paymentMatch) {
       row.style.display = ""; // Show the row
     } else {
@@ -449,3 +379,12 @@ function applyPaymentFilter() {
     }
   }
 }
+
+// et paymentMatch =
+//   paymentFilters.length === 0 ||
+//   paymentFilters.some((option) => {
+//     const includes = rowData.payment.includes(option);
+//     console.llog("Checking Option:", option);
+//     console.log("Includes Option:", includes);
+//     return includes;
+//   });
