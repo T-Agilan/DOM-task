@@ -338,14 +338,12 @@ function clearFilter() {
     table.rows[i].style.display = "";
   }
 }
-
 // filter for payment check box
 var paymentFilters = [];
 function filterPayment(event) {
   event.preventDefault(); // Prevent form submission
   let checkboxes = document.getElementsByName("paymentCheckbox");
   paymentFilters = [];
-
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       paymentFilters.push(checkboxes[i].value);
@@ -361,17 +359,12 @@ function applyPaymentFilter() {
   for (let i = 1; i < table.rows.length; i++) {
     let row = table.rows[i];
     let rowData = myArr[i - 1]; // Get the corresponding data from the array
-    console.log("Row Data Payment Options:", rowData.payment);
     let paymentMatch =
       paymentFilters.length === 0 ||
       paymentFilters.some((option) => {
         const includes = rowData.payment.includes(option);
-        console.log("Checking Option:", option);
-        console.log("Includes Option:", rowData.payment.includes(option));
         return includes;
       });
-    console.log("Selected Payment Filters:", paymentFilters);
-    console.log("Payment Match:", paymentMatch);
     if (paymentMatch) {
       row.style.display = ""; // Show the row
     } else {
@@ -380,11 +373,3 @@ function applyPaymentFilter() {
   }
 }
 
-// et paymentMatch =
-//   paymentFilters.length === 0 ||
-//   paymentFilters.some((option) => {
-//     const includes = rowData.payment.includes(option);
-//     console.llog("Checking Option:", option);
-//     console.log("Includes Option:", includes);
-//     return includes;
-//   });
